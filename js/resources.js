@@ -4,10 +4,15 @@ var resources = [
      * @example
      * { name: "example", type:"image", src: "data/img/example.png" },
      */
-    { name: "forest",  type:"image", src: "data/img/forest.png" },
-    { name: "isometric_grass_and_water",  type:"image", src: "data/img/isometric_grass_and_water.png" },
-    { name: "Blank_Sprite_Sheet", type:"image", src: "data/img/Sprite_1_col.png" },
-    /*{ name: "Blank_Sprite_Sheet", type:"image", src: "data/img/Blank_Sprite_Sheet_4_2_by_KnightYamato.png" },*/
+    { name: "forest", type: "image", src: "data/img/forest.png" },
+    { name: "houses", type: "image", src: "data/img/houses.png" },
+    { name: "house_door_2_tiles", type: "image", src: "data/img/house_door_2_tiles.png" },
+    { name: "TX Plant", type: "image", src: "data/img/TX Plant.png" },
+    { name: "TX Props", type: "image", src: "data/img/TX Props.png" },
+    { name: "TX Tileset Grass", type: "image", src: "data/img/TX Tileset Grass.png" },
+
+    { name: "Player_Sprite", type: "image", src: "data/img/StickmanSpriteSheet.png" },
+    { name: "Enemy_Sprite", type: "image", src: "data/img/StickmanSpriteSheet.png" },
 
     /* Maps.
      * @example
@@ -15,7 +20,7 @@ var resources = [
      * { name: "example01", type: "tmx", src: "data/map/example01.json" },
       */
     { name: "isometric", type: "tmx", src: "data/map/isometric.tmx" },
-    { name: "isometric_staggered", type: "tmx", src: "data/map/isometric_staggered.tmx" }
+    { name: "taskmaster_house", type: "tmx", src: "data/map/taskmaster_house.tmx" }
 
     /* Background music.
      * @example

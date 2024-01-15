@@ -2,14 +2,16 @@ import * as me from 'https://esm.run/melonjs';
 
 // a player entity
 class PlayerEntity extends me.Sprite {
-
     constructor(x, y, settings) {
-        // call the constructor
+        settings.anchorPoint = new me.Vector2d(0.5, 0.5);
+        settings.tint = new me.Color(0, 0, 0);
+
+        // call the super constructor
         super(x, y,
             Object.assign({
-                image: "Blank_Sprite_Sheet",
+                image: "Player_Sprite",
                 framewidth: 32,
-                frameheight: 32
+                frameheight: 64
             }, settings)
         );
 
@@ -35,10 +37,10 @@ class PlayerEntity extends me.Sprite {
         me.input.bindKey(me.input.KEY.DOWN,  "down");
 
         // define an additional basic walking animation
-        this.addAnimation("walk_left",  [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]);
-        this.addAnimation("walk_right", [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]);
-        this.addAnimation("walk_up",    [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47]);
-        this.addAnimation("walk_down",  [0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10, 11]);
+        this.addAnimation("walk_left",  [9,  10, 11, 12, 13, 14, 15, 16, 17]);
+        this.addAnimation("walk_right", [18, 19, 20, 21, 22, 23, 24, 25, 26]);
+        this.addAnimation("walk_up",    [27, 28, 29, 30, 31, 32, 33, 34, 35]);
+        this.addAnimation("walk_down",  [0,  1,  2,  3,  4,  5,  6,  7,  8]);
         // set default one
         this.setCurrentAnimation("walk_down");
     }
@@ -53,6 +55,10 @@ class PlayerEntity extends me.Sprite {
         if (this.body.vel.x !== 0 || this.body.vel.y !== 0) {
             super.update(dt);
             return true;
+        }
+        else {
+            this.setCurrentAnimation("walk_down");
+            this.setAnimationFrame(0);
         }
     }
 

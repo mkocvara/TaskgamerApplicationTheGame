@@ -103,10 +103,10 @@ class PlayScreen extends me.Stage {
         me.game.world.gravity.set(0, 0);
 
         // load a level
-        me.level.load("isometric");
+        me.level.load("taskmaster_house");
 
         // display a basic tile selector
-        me.game.world.addChild(new Selector());
+        // me.game.world.addChild(new Selector());
 
         // register on mouse event
         me.input.registerPointerEvent("pointermove", me.game.viewport, function (event) {
