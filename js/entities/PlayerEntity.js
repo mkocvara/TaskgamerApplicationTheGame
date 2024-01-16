@@ -3,7 +3,7 @@ import * as me from 'https://esm.run/melonjs';
 // a player entity
 class PlayerEntity extends me.Sprite {
     constructor(x, y, settings) {
-        settings.anchorPoint = new me.Vector2d(0.5, 0.5);
+        settings.anchorPoint = new me.Vector2d(0, 0.5);
         settings.tint = new me.Color(0, 0, 0);
 
         // call the super constructor
@@ -16,11 +16,10 @@ class PlayerEntity extends me.Sprite {
         );
 
         // add a physic body with a diamond as a body shape
-        this.body = new me.Body(this, (new me.Rect(16, 16, 16, 16)).toIso());
+        this.body = new me.Body(this, (new me.Rect(16, 16, 16, 16)));
         // walking & jumping speed
         this.body.setMaxVelocity(2.5, 2.5);
         this.body.setFriction(0.4,0.4);
-
 
         // set the display around our position
         me.game.viewport.follow(this, me.game.viewport.AXIS.BOTH);
@@ -56,7 +55,7 @@ class PlayerEntity extends me.Sprite {
             super.update(dt);
             return true;
         }
-        else {
+        else { 
             this.setCurrentAnimation("walk_down");
             this.setAnimationFrame(0);
         }

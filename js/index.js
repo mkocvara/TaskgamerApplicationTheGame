@@ -1,6 +1,7 @@
 import * as me from 'https://esm.run/melonjs';
 import resources from './resources.js';
 import PlayerEntity from './entities/PlayerEntity.js';
+import EnemyEntity from './entities/EnemyEntity.js';
 import PlayScreen from './screens/play.js';
 
 
@@ -25,6 +26,7 @@ export default function onload () {
 
         // register our objects entity in the object pool
         me.pool.register("mainPlayer", PlayerEntity);
+        me.pool.register("enemy", EnemyEntity);
 
         // switch to PLAY state
         me.state.change(me.state.PLAY);
