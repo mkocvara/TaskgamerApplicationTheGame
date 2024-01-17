@@ -109,8 +109,8 @@ class PlayScreen extends me.Stage {
         // me.game.world.addChild(new Selector());
 
         // register on mouse event
-        me.input.registerPointerEvent("pointermove", me.game.viewport, function (event) {
-            me.event.emit("pointermove", event);
+        me.input.registerPointerEvent("pointerdown", me.game.viewport, function (event) {
+            me.event.emit("pointerdown", event);
         }, false);
     }
 

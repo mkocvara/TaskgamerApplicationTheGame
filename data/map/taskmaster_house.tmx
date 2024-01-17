@@ -387,7 +387,7 @@
   <object id="33" name="enemy" x="672" y="736" width="32" height="32"/>
  </objectgroup>
  <objectgroup color="#00aa00" id="16" name="Player">
-  <object id="17" name="mainPlayer" type="actor1m" x="384" y="416" width="32" height="32"/>
+  <object id="17" name="player" x="512" y="288" width="32" height="64"/>
  </objectgroup>
  <layer id="1" name="House Roof" width="40" height="30" locked="1">
   <data encoding="csv">

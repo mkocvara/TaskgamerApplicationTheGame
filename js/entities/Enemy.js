@@ -1,7 +1,7 @@
 import * as me from 'https://esm.run/melonjs';
 
 // an enemy entity
-export default class EnemyEntity extends me.Sprite {
+export default class Enemy extends me.Sprite {
     constructor(x, y, settings) {
         settings.anchorPoint = new me.Vector2d(0, 0.5);
         settings.tint = new me.Color(255, 0, 0);
@@ -15,7 +15,11 @@ export default class EnemyEntity extends me.Sprite {
             }, settings)
         );
 
+        this.name = "enemy";
         this.framewidth = 32; // for later use
+
+        // DEBUG variables
+        this.drawBody = true;
 
         // add a physic body with a diamond as a body shape
         this.body = new me.Body(this, (new me.Rect(16, 16, 16, 16)));
@@ -68,6 +72,17 @@ export default class EnemyEntity extends me.Sprite {
             this.pos.x + (this.framewidth/2),
             this.pos.y - 2
         );
+
+        // DEBUG
+        if (this.drawBody && this.body !== null) {
+            renderer.save();
+            renderer.setColor(this.tint);
+            var bodyShape = this.body.getShape().clone();
+            bodyShape.pos.x += this.pos.x + (this.getBounds().width * this.anchorPoint.x);
+            bodyShape.pos.y += this.pos.y + (this.getBounds().height * this.anchorPoint.y);
+            renderer.stroke(bodyShape);
+            renderer.restore();
+        }
     }
 
     updateMovement(dt) {

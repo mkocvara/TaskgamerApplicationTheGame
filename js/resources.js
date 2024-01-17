@@ -13,6 +13,7 @@ var resources = [
 
     { name: "Player_Sprite", type: "image", src: "data/img/StickmanSpriteSheet.png" },
     { name: "Enemy_Sprite", type: "image", src: "data/img/StickmanSpriteSheet.png" },
+    { name: "Envelope", type: "image", src: "data/img/TaskgamerEnvelope.png" },
 
     /* Maps.
      * @example
