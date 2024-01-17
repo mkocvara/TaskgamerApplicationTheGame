@@ -17,16 +17,18 @@ export default class Envelope extends SpriteExtended {
 
         this.anchorPoint.set(0, 0);
         this.dir = dir.normalize();
-        //this.rotate(rot, this.getBounds().cent);
+        this.rotate(rot);
         this.scale(scale);
 
         this.name = "envelope";
 
         // DEBUG variables
-        this.drawBody = true;
+        this.drawBody = false;
 
         // add a physic body
-        this.body = new me.Body(this, new me.Rect(0, 0, width * scale, height * scale));
+        var hitbox = new me.Rect(-(this.anchorPoint.x * width * scale), -(this.anchorPoint.y * height * scale), width * scale, height * scale);
+        hitbox.rotate(rot);
+        this.body = new me.Body(this, hitbox);
         // walking & jumping speed
         this.body.setMaxVelocity(4, 4);
         this.body.setFriction(0,0);
