@@ -112,6 +112,9 @@ class PlayScreen extends me.Stage {
         me.input.registerPointerEvent("pointerdown", me.game.viewport, function (event) {
             me.event.emit("pointerdown", event);
         }, false);
+        me.input.registerPointerEvent("pointerup", me.game.viewport, function (event) {
+            me.event.emit("pointerup", event);
+        }, false);
     }
 
     /**

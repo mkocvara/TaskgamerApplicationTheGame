@@ -55,18 +55,11 @@ export default class Envelope extends SpriteExtended {
      * (called when colliding with other objects)
      */
     onCollision(response, other) {
-        if (other.name == undefined) { 
-            console.log(other);
-            console.log(response); 
-        }
-
         switch (other.name) {
             case "player":
                 return false;
             case "envelope":
                 return false;
-            case "enemy":
-                console.log("hit enemy");
             default:
                 me.game.world.removeChild(this);
                 return false;

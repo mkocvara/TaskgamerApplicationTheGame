@@ -15,7 +15,7 @@ export default class SpriteExtended extends me.Sprite {
     draw(renderer) {
         super.draw(renderer);
 
-        // DEBUG body draw
+        // DEBUG body draw (only works on non-rotated objects, unfortunately)
         if (this.drawBody && this.body !== null) {
             renderer.save();
             renderer.setColor(this.tint);

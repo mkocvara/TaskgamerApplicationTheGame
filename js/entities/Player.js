@@ -57,12 +57,19 @@ export default class Player extends SpriteExtended {
         // register on mouse click event
         //me.input.registerPointerEvent("pointerdown", me.game.viewport, (event) => this.shoot(event));
         me.event.on("pointerdown", (event) => this.shoot(event), this);
+
+        // game variables
+        this.cooldown = 200; // in ms
+        this.currCooldown = 0;
     }
 
     /**
      * update the player pos
      */
     update(dt) {
+        // update cooldown
+        this.currCooldown -= dt;
+
         this.updateMovement(dt);
 
         // check if we moved (an "idle" animation would definitely be cleaner)
@@ -74,6 +81,7 @@ export default class Player extends SpriteExtended {
             this.setCurrentAnimation("walk_down");
             this.setAnimationFrame(0);
         }
+
     }
 
     /**
@@ -85,6 +93,9 @@ export default class Player extends SpriteExtended {
     }
 
     shoot(mouseDownEvent) {
+        if (this.isOnCooldown())
+            return;
+
         // create a new envelope
         var direction = new me.Vector2d(mouseDownEvent.gameX - this.pos.x, mouseDownEvent.gameY - this.pos.y);
         var rotation = new me.Vector2d(1, 0).angle(direction);
@@ -94,6 +105,16 @@ export default class Player extends SpriteExtended {
         var envelope = me.pool.pull("envelope", envelopePos.x, envelopePos.y, direction, rotation);
         // add it to the game world
         me.game.world.addChild(envelope);
+
+        this.startCooldown();
+    }
+
+    isOnCooldown() {
+        return this.currCooldown > 0;
+    }
+
+    startCooldown() {
+        this.currCooldown = this.cooldown;
     }
 
     updateMovement(dt) {
