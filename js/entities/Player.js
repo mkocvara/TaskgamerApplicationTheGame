@@ -1,22 +1,27 @@
 import * as me from 'https://esm.run/melonjs';
-import Enemy from './Enemy.js';
+import SpriteExtended from './SpriteExtended.js';
 
 // a player entity
-class Player extends me.Sprite {
+export default class Player extends SpriteExtended {
     constructor(x, y, settings) {
         // settings.anchorPoint = new me.Vector2d(0, 0); // CANNOT set anchorPoint for whatever reason; gets overriden to (0, 0.5) no matter what
         settings.tint = new me.Color(0, 0, 0);
+
+        var width = 32;
+        var height = 64;
 
         // call the super constructor
         super(x, y,
             Object.assign({
                 image: "Player_Sprite",
-                framewidth: 32,
-                frameheight: 64
+                framewidth: width,
+                frameheight: height
             }, settings)
         );
 
         this.name = "player"
+        this.width = width;
+        this.height = height;
 
         // DEBUG variables
         this.drawBody = true;
@@ -71,21 +76,6 @@ class Player extends me.Sprite {
         }
     }
 
-    draw(renderer) {
-        super.draw(renderer);
-
-        // DEBUG
-        if (this.drawBody && this.body !== null) {
-            renderer.save();
-            renderer.setColor(this.tint);
-            var bodyShape = this.body.getShape().clone();
-            bodyShape.pos.x += this.pos.x + (this.getBounds().width * this.anchorPoint.x);
-            bodyShape.pos.y += this.pos.y + (this.getBounds().height * this.anchorPoint.y);
-            renderer.stroke(bodyShape);
-            renderer.restore();
-        }
-     }
-
     /**
     *  action to perform on state change
     */
@@ -100,7 +90,8 @@ class Player extends me.Sprite {
         var rotation = new me.Vector2d(1, 0).angle(direction);
         if (mouseDownEvent.gameY < this.pos.y)
             rotation = ((2 * Math.PI) - rotation); // make rot out of 2 PI for full rotation
-        var envelope = me.pool.pull("envelope", this.pos.x, this.pos.y, direction, rotation);
+        var envelopePos = new me.Vector2d(this.pos.x + ((0.5 - this.anchorPoint.x) * this.width), this.pos.y + ((0.5 - this.anchorPoint.y) * this.height));
+        var envelope = me.pool.pull("envelope", envelopePos.x, envelopePos.y, direction, rotation);
         // add it to the game world
         me.game.world.addChild(envelope);
     }
@@ -154,5 +145,3 @@ class Player extends me.Sprite {
         }
     }
 };
-
-export default Player;

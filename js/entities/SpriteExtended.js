@@ -1,10 +1,12 @@
 import * as me from 'https://esm.run/melonjs';
 
 // an enemy entity
-export default class EntityExtended extends me.Entity {
+export default class SpriteExtended extends me.Sprite {
     constructor(x, y, settings) {
         // call the super constructor
         super(x, y, settings);
+
+        this.body = null;
 
         // DEBUG variables
         this.drawBody = false;

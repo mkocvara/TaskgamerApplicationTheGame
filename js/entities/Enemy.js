@@ -1,7 +1,8 @@
 import * as me from 'https://esm.run/melonjs';
+import SpriteExtended from './SpriteExtended.js';
 
 // an enemy entity
-export default class Enemy extends me.Sprite {
+export default class Enemy extends SpriteExtended {
     constructor(x, y, settings) {
         settings.anchorPoint = new me.Vector2d(0, 0.5);
         settings.tint = new me.Color(255, 0, 0);
@@ -22,7 +23,7 @@ export default class Enemy extends me.Sprite {
         this.drawBody = true;
 
         // add a physic body with a diamond as a body shape
-        this.body = new me.Body(this, (new me.Rect(16, 16, 16, 16)));
+        this.body = new me.Body(this, (new me.Rect(8, -24, 16, 48)));
         // walking & jumping speed
         this.body.setMaxVelocity(2, 2);
         this.body.setFriction(0.4,0.4);
@@ -72,17 +73,6 @@ export default class Enemy extends me.Sprite {
             this.pos.x + (this.framewidth/2),
             this.pos.y - 2
         );
-
-        // DEBUG
-        if (this.drawBody && this.body !== null) {
-            renderer.save();
-            renderer.setColor(this.tint);
-            var bodyShape = this.body.getShape().clone();
-            bodyShape.pos.x += this.pos.x + (this.getBounds().width * this.anchorPoint.x);
-            bodyShape.pos.y += this.pos.y + (this.getBounds().height * this.anchorPoint.y);
-            renderer.stroke(bodyShape);
-            renderer.restore();
-        }
     }
 
     updateMovement(dt) {
@@ -93,8 +83,16 @@ export default class Enemy extends me.Sprite {
      * colision handler
      * (called when colliding with other objects)
      */
-    onCollision(/*response, other*/) {
-        // Make all other objects solid
+    onCollision(response, other) {
+        switch (other.name) {
+            case "envelope":
+                return false;
+            case "player":
+                return false;
+            default:
+                return true;
+        }
+
         return true;
     }
 };
