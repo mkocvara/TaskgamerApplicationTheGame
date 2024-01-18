@@ -54,14 +54,18 @@ export default class Game extends me.Renderable {
 
         this.baseSpawnTimer = 1000;
         this.timeSinceLastSpawn = this.baseSpawnTimer;
+        me.game.gameTime = 0;
     }
 
     update(dt) {
         if (this.inactive)
             return;
 
+        me.game.gameTime += dt;
+
         if (this.allEnemies.length == 0) {
             if (this.allEnemiesDead()) {
+                me.game.timeFinished = me.game.gameTime;
                 me.state.change(me.state.GAME_END);
             }
             return;

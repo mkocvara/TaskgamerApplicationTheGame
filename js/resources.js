@@ -10,11 +10,13 @@ var resources = [
     { name: "TX Props", type: "image", src: "data/img/TX Props.png" },
     { name: "TX Tileset Grass", type: "image", src: "data/img/TX Tileset Grass.png" },
 
-    { name: "ControlsReference", type: "image", src: "data/img/controls.png" },
 
     { name: "Player_Sprite", type: "image", src: "data/img/StickmanSpriteSheet.png" },
     { name: "Enemy_Sprite", type: "image", src: "data/img/StickmanSpriteSheet.png" },
     { name: "Envelope", type: "image", src: "data/img/TaskgamerEnvelope.png" },
+    { name: "EnvelopeBig", type: "image", src: "data/img/TaskgamerEnvelopeBig.png" },
+    { name: "ControlsReference", type: "image", src: "data/img/controls.png" },
+    { name: "GRPLogo", type: "image", src: "data/img/GRPLogo.png" },
 
     /* Maps.
      * @example

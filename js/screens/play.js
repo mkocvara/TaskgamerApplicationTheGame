@@ -43,11 +43,12 @@ export default class PlayScreen extends me.Stage {
             fillStyle: "#FFFFFF",
             textBaseline: "top",
             textAlign: "left",
-            text: "First Task: Defeat the other applicants and get selected for the show. Your time starts now!"
+            text: "First Task: Defeat the other applicants and get selected for the show.\nYour time starts now!"
         });
         taskText.floating = true;
         me.game.world.addChild(taskText);
 
+        // controls reference bottom right
         var controlsRef = new me.Sprite(me.game.viewport.width - 20, me.game.viewport.height - 20, {
             image: "ControlsReference",
             name: "controlsRef",
@@ -55,5 +56,25 @@ export default class PlayScreen extends me.Stage {
         })
         controlsRef.floating = true;
         me.game.world.addChild(controlsRef);
+
+        // timer bottom left
+        var taskText = new me.Text(20, me.game.viewport.height - 20, {
+            font: "Courier",
+            size: 18,
+            fillStyle: "#FFFFFF",
+            textBaseline: "bottom",
+            textAlign: "left",
+            text: "Time: " + me.game.gameTime
+        }).bold();
+        taskText.floating = true;
+        taskText.update = (function (dt) {
+            var time = me.game.gameTime;
+            var seconds = Math.floor(time / 1000);
+            var minutes = Math.floor(seconds / 60);
+            seconds = seconds % 60;
+            var text = "Time: " + minutes.toString().padStart(2, '0') + ":" + seconds.toString().padStart(2, '0');
+            this.setText(text);
+        }).bind(taskText);
+        me.game.world.addChild(taskText);
     }
 };

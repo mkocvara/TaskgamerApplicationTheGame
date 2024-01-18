@@ -35,7 +35,7 @@ export default function onload () {
         me.pool.register("envelope", Envelope);
 
         // switch to PLAY state
-        me.state.change(me.state.PLAY);
+        me.state.change(me.state.GAME_END);
         
         // set a persistent font
         me.game.fonts = {};
