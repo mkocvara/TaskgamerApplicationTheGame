@@ -18,7 +18,7 @@ export default class Enemy extends SpriteExtended {
         this.framewidth = 32; // for later use
 
         // DEBUG variables
-        this.drawBody = true;
+        this.drawBody = false;
 
         // add a physic body
         this.body = new me.Body(this, (new me.Rect(8, -24, 16, 48)));
@@ -90,6 +90,18 @@ export default class Enemy extends SpriteExtended {
         this.body.vel.y = toPlayer.y * this.body.maxVel.y;
 
         // TODO: animation changes
+        if (toPlayer.x > 0 && Math.abs(toPlayer.x) > Math.abs(toPlayer.y)) {
+            this.setCurrentAnimation("walk_right");
+        }
+        else if (toPlayer.x < 0 && Math.abs(toPlayer.x) > Math.abs(toPlayer.y)) {
+            this.setCurrentAnimation("walk_left");
+        }
+        else if (toPlayer.y > 0) {
+            this.setCurrentAnimation("walk_down");
+        }
+        else if (toPlayer.y < 0) {
+            this.setCurrentAnimation("walk_up");
+        }
     }
 
     /**

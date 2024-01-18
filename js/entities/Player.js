@@ -24,7 +24,7 @@ export default class Player extends SpriteExtended {
         this.height = height;
 
         // DEBUG variables
-        this.drawBody = true;
+        this.drawBody = false       ;
 
         // add a physic body with a rectangle as a body shape
         this.body = new me.Body(this, (new me.Rect(-8, 8, 16, 16)));
