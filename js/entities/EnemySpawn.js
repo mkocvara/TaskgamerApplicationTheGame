@@ -14,6 +14,6 @@ export default class EnemySpawn extends me.Renderable {
 
         var newEnemy = me.pool.pull("enemy", this.pos.x, this.pos.y, this.playerRef);
         newEnemy.nameTag = enemyName;
-        me.game.world.addChild(newEnemy);
+        me.game.world.addChild(newEnemy, this.playerRef.depth);
     }
 };

@@ -67,10 +67,12 @@ export default class Enemy extends SpriteExtended {
     }
 
     updateMovement(dt) {
-        // TODO: move to player
-        //var dirToPlayer = this.playerRef.pos.sub(this.pos).normalize();
-        //this.body.vel.x = dirToPlayer.x * this.body.maxVel.x;
-        //this.body.vel.y = dirToPlayer.y * this.body.maxVel.y;
+        var playerPos = new me.Vector2d(this.playerRef.pos.x, this.playerRef.pos.y);
+        var dirToPlayer = playerPos.sub(this.pos).normalize();
+        this.body.vel.x = dirToPlayer.x * this.body.maxVel.x;
+        this.body.vel.y = dirToPlayer.y * this.body.maxVel.y;
+
+        // TODO: animation changes!
     }
 
     /**
