@@ -7965,7 +7965,12 @@ class QuadTree {
         if (item.isFloating === true) {
             pos = this.world.app.viewport.localToWorld(bounds.left, bounds.top, QT_VECTOR);
         } else {
-            pos = QT_VECTOR.set(item.left, item.top);
+            if (typeof (item.left) === 'number' && typeof (item.top) === 'number')
+                pos = QT_VECTOR.set(item.left, item.top);
+            else {
+                let itemBounds = item.getBounds();
+                pos = QT_VECTOR.set(itemBounds.left, itemBounds.top)
+            }
         }
 
         let index = -1,

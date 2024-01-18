@@ -67,12 +67,29 @@ export default class Enemy extends SpriteExtended {
     }
 
     updateMovement(dt) {
+        // direction to player
         var playerPos = new me.Vector2d(this.playerRef.pos.x, this.playerRef.pos.y);
-        var dirToPlayer = playerPos.sub(this.pos).normalize();
-        this.body.vel.x = dirToPlayer.x * this.body.maxVel.x;
-        this.body.vel.y = dirToPlayer.y * this.body.maxVel.y;
+        var toPlayer = playerPos.sub(this.pos);
 
-        // TODO: animation changes!
+        // check if there is an obstacle in the way
+        var line = new me.Line(this.pos.x, this.pos.y, [new me.Vector2d(0, 0), toPlayer]);
+        var intersects = me.collision.rayCast(line);
+
+        toPlayer.normalize();
+
+        intersects = intersects.filter(intersect => { return intersect.name !== 'enemy' && intersect.name !== 'player' });
+
+        if (intersects.length > 0) { 
+            // direction away from the closest obstacle
+            var obstaclePos = intersects[0].pos;
+            var normalToObstacle = new me.Vector2d(obstaclePos.y - this.pos.y, this.pos.x - obstaclePos.x).normalize(); // "left" normal;
+            toPlayer.add(normalToObstacle).normalize();
+        }
+
+        this.body.vel.x = toPlayer.x * this.body.maxVel.x;
+        this.body.vel.y = toPlayer.y * this.body.maxVel.y;
+
+        // TODO: animation changes
     }
 
     /**
