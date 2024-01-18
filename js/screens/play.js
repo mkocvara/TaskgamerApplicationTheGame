@@ -23,14 +23,7 @@ export default class PlayScreen extends me.Stage {
             me.event.emit("pointerup", event);
         }, false);
 
-        // set a persistent font
-        me.game.fonts = {};
-        me.game.fonts.enemyNameTag = new me.Text(0, 0, {
-            font: "Courier monospace",
-            fillStyle: "#FF0000",
-            size: 11,
-            textAlign: "center",
-        }).bold();
+        this.setupUI();
     }
 
     /**
@@ -38,8 +31,29 @@ export default class PlayScreen extends me.Stage {
      */
     onDestroyEvent() {
         // unsubscribe to all events
-        me.off.unsubscribe(this.pointerEvent);
-        me.off.unsubscribe(this.viewportEvent);
-        me.input.releasePointerEvent("pointermove", me.game.viewport);
+        me.input.releasePointerEvent("pointerup", me.game.viewport);
+        me.input.releasePointerEvent("pointerdown", me.game.viewport);
+    }
+
+    setupUI() {
+        // write task in top left corner
+        var taskText = new me.Text(20, 20, {
+            font: "Veteran Typewriter Courier",
+            size: 18,
+            fillStyle: "#FFFFFF",
+            textBaseline: "top",
+            textAlign: "left",
+            text: "First Task: Defeat the other applicants and get selected for the show. Your time starts now!"
+        });
+        taskText.floating = true;
+        me.game.world.addChild(taskText);
+
+        var controlsRef = new me.Sprite(me.game.viewport.width - 20, me.game.viewport.height - 20, {
+            image: "ControlsReference",
+            name: "controlsRef",
+            anchorPoint: new me.Vector2d(1, 1)
+        })
+        controlsRef.floating = true;
+        me.game.world.addChild(controlsRef);
     }
 };

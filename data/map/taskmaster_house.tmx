@@ -376,18 +376,18 @@
 </data>
  </layer>
  <objectgroup color="#aa0000" id="17" name="Enemy Spawns">
-  <object id="21" name="enemySpawn" x="128" y="352" width="32" height="32"/>
+  <object id="21" name="enemySpawn" x="107.5" y="353.5" width="32" height="32"/>
   <object id="23" name="enemySpawn" x="1056" y="480" width="21.3333" height="31"/>
-  <object id="24" name="enemySpawn" x="1056.33" y="736.667" width="20.6667" height="31"/>
+  <object id="24" name="enemySpawn" x="896" y="736" width="32" height="31"/>
   <object id="25" name="enemySpawn" x="1056" y="608" width="22.3636" height="31.6364"/>
   <object id="26" name="enemySpawn" x="352" y="640" width="32" height="32"/>
   <object id="27" name="enemySpawn" x="192" y="544" width="32" height="32"/>
   <object id="31" name="enemySpawn" x="605.25" y="383.5" width="19.75" height="31.25"/>
   <object id="32" name="enemySpawn" x="753.25" y="560" width="30.5" height="31"/>
-  <object id="33" name="enemySpawn" x="672" y="736" width="32" height="32"/>
+  <object id="33" name="enemySpawn" x="576" y="736" width="32" height="32"/>
  </objectgroup>
  <objectgroup color="#00aa00" id="16" name="Player">
-  <object id="17" name="player" x="512" y="288" width="32" height="32"/>
+  <object id="17" name="player" x="416" y="384" width="32" height="32"/>
  </objectgroup>
  <layer id="1" name="House Roof" width="40" height="30" locked="1">
   <data encoding="csv">
@@ -613,7 +613,7 @@
   <object id="42" x="932" y="725" width="55.5" height="29.5"/>
   <object id="43" x="994" y="704.5" width="30.5" height="26.5"/>
   <object id="44" x="1024.5" y="735.5" width="30" height="29"/>
-  <object id="45" x="295.5" y="492.5" width="22.5" height="49.5"/>
+  <object id="45" x="295.5" y="496.5" width="5.83333" height="31.5"/>
   <object id="46" x="136" y="312.5" width="14.5" height="9"/>
   <object id="47" x="544" y="256" width="64" height="64"/>
   <object id="48" x="608" y="512" width="32" height="32"/>

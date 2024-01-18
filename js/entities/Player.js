@@ -55,7 +55,6 @@ export default class Player extends SpriteExtended {
         this.setCurrentAnimation("walk_down");
 
         // register on mouse click event
-        //me.input.registerPointerEvent("pointerdown", me.game.viewport, (event) => this.shoot(event));
         me.event.on("pointerdown", (event) => this.shoot(event), this);
 
         // game variables
@@ -88,7 +87,7 @@ export default class Player extends SpriteExtended {
     */
     onDestroyEvent() {
         // unsubscribe to all events
-        me.off.unsubscribe(this.clickEvent);
+        me.event.off(this.clickEvent);
     }
 
     shoot(mouseDownEvent) {

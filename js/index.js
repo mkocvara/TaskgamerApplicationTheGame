@@ -5,6 +5,8 @@ import Enemy from './entities/Enemy.js';
 import EnemySpawn from './entities/EnemySpawn.js';
 import Envelope from './entities/Envelope.js';
 import PlayScreen from './screens/play.js';
+import GameOverScreen from './screens/gameover.js';
+import GameEndScreen from './screens/gameend.js';
 
 /**
  * Initialize the application
@@ -20,8 +22,8 @@ export default function onload () {
     me.loader.preload(resources, () => {
         // set game states
         me.state.set(me.state.PLAY, new PlayScreen());
-        //me.state.set(me.state.GAMEOVER, ); // TODO
-        //me.state.set(me.state.GAME_END, ); // TODO
+        me.state.set(me.state.GAMEOVER, new GameOverScreen()); // TODO
+        me.state.set(me.state.GAME_END, new GameEndScreen()); // TODO
 
         // set the fade transition effect
         me.state.transition("fade","#FFFFFF", 250);
@@ -34,5 +36,14 @@ export default function onload () {
 
         // switch to PLAY state
         me.state.change(me.state.PLAY);
+        
+        // set a persistent font
+        me.game.fonts = {};
+        me.game.fonts.enemyNameTag = new me.Text(0, 0, {
+            font: "Courier monospace",
+            fillStyle: "#FF0000",
+            size: 11,
+            textAlign: "center",
+        }).bold();
     });
 };
