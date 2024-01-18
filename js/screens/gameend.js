@@ -34,7 +34,7 @@ export default class GameEndScreen extends me.Stage {
         var seconds = Math.floor(time / 1000);
         var minutes = Math.floor(seconds / 60);
         seconds = seconds % 60;
-        var text = "First task successful.\nYour time was ";
+        var text = "First task completed in ";
         var minutesSubStr = minutes > 1 ? "minutes" : "minute";
         text += minutes > 0 ? minutes + " " + minutesSubStr + " and " : "";
         text += seconds + " seconds.";

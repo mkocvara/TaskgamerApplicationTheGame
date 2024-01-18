@@ -8,6 +8,14 @@ export default class GameOverScreen extends me.Stage {
      */
     onResetEvent() {
         me.game.world.backgroundColor.parseCSS("#202020");
+
+        var youDied = new me.Sprite(me.game.viewport.width / 2, (me.game.viewport.height / 2 + 50), {
+            image: "YouDied",
+            anchorPoint: new me.Vector2d(0.5, 0.5)
+        });
+        youDied.floating = true;
+        youDied.scale(0.3);
+        me.game.world.addChild(youDied);
     }
 
     /**
