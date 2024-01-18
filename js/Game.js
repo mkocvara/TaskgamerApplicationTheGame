@@ -50,6 +50,7 @@ export default class Game extends me.Renderable {
 
         this.totalEnemies = this.allEnemies.length;
         this.enemiesKilled = 0;
+        this.aliveEnemeies = [];
 
         this.baseSpawnTimer = 1000;
         this.timeSinceLastSpawn = this.baseSpawnTimer;
@@ -60,7 +61,7 @@ export default class Game extends me.Renderable {
             return;
 
         if (this.allEnemies.length == 0) {
-            if (this.allEnemiesDead()) { // TODO: need to keep track of enemies alive and only trigger after all are dead
+            if (this.allEnemiesDead()) {
                 me.state.change(me.state.GAME_END);
             }
             return;
@@ -77,9 +78,10 @@ export default class Game extends me.Renderable {
         var randEnemyIndex = Math.floor(Math.random() * this.allEnemies.length);
         var randEnemy = this.allEnemies[randEnemyIndex];
 
-        // TODO be more selective (pick ones where player or other enemies are not close)
-        var randSpawner = this.enemySpawners[Math.floor(Math.random() * this.enemySpawners.length)];
-        randSpawner.spawnEnemy(randEnemy, this.enemyKilled.bind(this));
+        var filteredSpawners = this.enemySpawners.filter(spawner => spawner.isAvailable(this.aliveEnemeies));
+        var spawnerArr = filteredSpawners.length > 0 ? filteredSpawners : this.enemySpawners;
+        var randSpawner = spawnerArr[Math.floor(Math.random() * spawnerArr.length)];
+        this.aliveEnemeies.push(randSpawner.spawnEnemy(randEnemy, this.enemyKilled.bind(this)));
 
         // remove the enemy from the list
         this.allEnemies.splice(randEnemyIndex, 1);
@@ -89,7 +91,9 @@ export default class Game extends me.Renderable {
         this.timeSinceLastSpawn = 0;
     }
 
-    enemyKilled() {
+    enemyKilled(enemy) {
+        var enemyIndex = this.aliveEnemeies.indexOf(enemy);
+        this.aliveEnemeies.splice(enemyIndex, 1);
         this.enemiesKilled++;
         console.log("Enemy killed! " + this.enemiesKilled + " / " + this.totalEnemies);
     }

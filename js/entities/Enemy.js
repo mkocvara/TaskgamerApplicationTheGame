@@ -91,8 +91,7 @@ export default class Enemy extends SpriteExtended {
 
         this.body.vel.x = toPlayer.x * this.body.maxVel.x;
         this.body.vel.y = toPlayer.y * this.body.maxVel.y;
-
-        // TODO: animation changes
+        
         if (toPlayer.x > 0 && Math.abs(toPlayer.x) > Math.abs(toPlayer.y)) {
             this.setCurrentAnimation("walk_right");
         }
@@ -106,11 +105,7 @@ export default class Enemy extends SpriteExtended {
             this.setCurrentAnimation("walk_up");
         }
     }
-
-    /**
-     * colision handler
-     * (called when colliding with other objects)
-     */
+    
     onCollision(response, other) {
         switch (other.name) {
             case "envelope":
@@ -131,7 +126,7 @@ export default class Enemy extends SpriteExtended {
 
     onDestroyEvent() {
         if (this.onDieCallback !== null) {
-            this.onDieCallback();
+            this.onDieCallback(this);
         }
     }
 };
