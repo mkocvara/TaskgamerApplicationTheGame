@@ -1,4 +1,4 @@
-import * as me from 'https://esm.run/melonjs';
+import * as me from '../melon.js';
 import Game from '../Game.js';
 
 export default class PlayScreen extends me.Stage {
@@ -22,6 +22,15 @@ export default class PlayScreen extends me.Stage {
         me.input.registerPointerEvent("pointerup", me.game.viewport, function (event) {
             me.event.emit("pointerup", event);
         }, false);
+
+        // set a persistent font
+        me.game.fonts = {};
+        me.game.fonts.enemyNameTag = new me.Text(0, 0, {
+            font: "Courier monospace",
+            fillStyle: "#FF0000",
+            size: 11,
+            textAlign: "center",
+        }).bold();
     }
 
     /**

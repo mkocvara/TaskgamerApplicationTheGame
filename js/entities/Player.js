@@ -1,4 +1,4 @@
-import * as me from 'https://esm.run/melonjs';
+import * as me from '../melon.js';
 import SpriteExtended from './SpriteExtended.js';
 
 // a player entity

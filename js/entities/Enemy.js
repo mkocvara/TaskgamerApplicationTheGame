@@ -1,6 +1,5 @@
-import * as me from 'https://esm.run/melonjs';
+import * as me from '../melon.js';
 import SpriteExtended from './SpriteExtended.js';
-import { nameTagFont } from '../fonts.js';
 
 // an enemy entity
 export default class Enemy extends SpriteExtended {
@@ -37,21 +36,7 @@ export default class Enemy extends SpriteExtended {
 
         // set text name above head
         this.nameTag = "ENEMY";
-        //this.nameTagFont = new me.Text(0, 0, {
-        //    font: "Courier monospace",
-        //    fillStyle: "#FF0000",
-        //    size: 11,
-        //    textAlign: "center",
-        //}).bold();
-
-        //this.nameTagFont = new me.Text(
-        //    this.pos.x + (this.framewidth/2),
-        //    this.pos.y - 2, {
-        //    font: "Courier monospace",
-        //    fillStyle: "#FF0000",
-        //    size: 11,
-        //    textAlign: "center",
-        //}).bold();
+        this.nameTagFont = me.game.fonts.enemyNameTag;
     }
 
     /**
@@ -73,12 +58,12 @@ export default class Enemy extends SpriteExtended {
     draw(renderer) {
         super.draw(renderer);
 
-        //this.nameTagFont.draw(
-        //    renderer,
-        //    this.nameTag,
-        //    this.pos.x + (this.framewidth/2),
-        //    this.pos.y - 2
-        //);
+        this.nameTagFont.draw(
+            renderer,
+            this.nameTag,
+            this.pos.x + (this.framewidth/2),
+            this.pos.y - 2
+        );
     }
 
     updateMovement(dt) {

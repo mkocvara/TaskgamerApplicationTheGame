@@ -1,4 +1,4 @@
-import * as me from 'https://esm.run/melonjs';
+import * as me from './melon.js';
 import resources from './resources.js';
 import Player from './entities/Player.js';
 import Enemy from './entities/Enemy.js';

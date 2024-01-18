@@ -1,4 +1,4 @@
-import * as me from 'https://esm.run/melonjs';
+import * as me from './melon.js';
 
 export var nameTagFont = new me.Text(0, 0, {
     font: "Courier monospace",

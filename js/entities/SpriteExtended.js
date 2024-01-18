@@ -1,4 +1,4 @@
-import * as me from 'https://esm.run/melonjs';
+import * as me from '../melon.js';
 
 // an enemy entity
 export default class SpriteExtended extends me.Sprite {

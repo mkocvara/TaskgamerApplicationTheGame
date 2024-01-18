@@ -1,4 +1,4 @@
-import * as me from 'https://esm.run/melonjs';
+import * as me from '../melon.js';
 
 export default class EnemySpawn extends me.Renderable {
     constructor(x, y, settings) {
