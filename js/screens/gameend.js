@@ -14,9 +14,11 @@ export default class GameEndScreen extends me.Stage {
             anchorPoint: new me.Vector2d(0.5, 0.5)
         });
         logo.floating = true;
-        logo.scale(0.8); 
+        logo.scale(0.8);
+        logo.alwaysUpdate = true;
         logo.update = (function (dt) {
-            this.rotate(dt / 2000);
+            this.rotate(dt / 1000);
+            return true;
         }).bind(logo);
         me.game.world.addChild(logo);
 

@@ -74,6 +74,7 @@ export default class PlayScreen extends me.Stage {
             seconds = seconds % 60;
             var text = "Time: " + minutes.toString().padStart(2, '0') + ":" + seconds.toString().padStart(2, '0');
             this.setText(text);
+            return true;
         }).bind(taskText);
         me.game.world.addChild(taskText);
     }
