@@ -4,7 +4,6 @@ var resources = [
      * @example
      * { name: "example", type:"image", src: "data/img/example.png" },
      */
-    { name: "forest", type: "image", src: "data/img/forest.png" },
     { name: "houses", type: "image", src: "data/img/houses.png" },
     { name: "house_door_2_tiles", type: "image", src: "data/img/house_door_2_tiles.png" },
     { name: "TX Plant", type: "image", src: "data/img/TX Plant.png" },
@@ -20,8 +19,7 @@ var resources = [
      * { name: "example01", type: "tmx", src: "data/map/example01.tmx" },
      * { name: "example01", type: "tmx", src: "data/map/example01.json" },
       */
-    { name: "isometric", type: "tmx", src: "data/map/isometric.tmx" },
-    { name: "taskmaster_house", type: "tmx", src: "data/map/taskmaster_house.tmx" }
+    { name: "taskmaster_house", type: "tmx", src: "data/map/taskmaster_house.tmx" },
 
     /* Background music.
      * @example
@@ -37,7 +35,6 @@ var resources = [
      * @example
      * { name: "example_tps", type: "json", src: "data/img/example_tps.json" },
      */
-
 ];
 
 export default resources;

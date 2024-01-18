@@ -4,7 +4,7 @@ import SpriteExtended from './SpriteExtended.js';
 // a player entity
 export default class Player extends SpriteExtended {
     constructor(x, y, settings) {
-        // settings.anchorPoint = new me.Vector2d(0, 0); // CANNOT set anchorPoint for whatever reason; gets overriden to (0, 0.5) no matter what
+        settings.anchorPoint = new me.Vector2d(0.5, 0.5);
         settings.tint = new me.Color(0, 0, 0);
 
         var width = 32;
@@ -27,7 +27,7 @@ export default class Player extends SpriteExtended {
         this.drawBody = true;
 
         // add a physic body with a rectangle as a body shape
-        this.body = new me.Body(this, (new me.Rect(8, 8, 16, 16)));
+        this.body = new me.Body(this, (new me.Rect(-8, 8, 16, 16)));
         // walking & jumping speed
         this.body.setMaxVelocity(2.5, 2.5);
         this.body.setFriction(0.4,0.4);
@@ -95,7 +95,7 @@ export default class Player extends SpriteExtended {
     shoot(mouseDownEvent) {
         if (this.isOnCooldown())
             return;
-
+            
         // create a new envelope
         var direction = new me.Vector2d(mouseDownEvent.gameX - this.pos.x, mouseDownEvent.gameY - this.pos.y);
         var rotation = new me.Vector2d(1, 0).angle(direction);
@@ -103,9 +103,11 @@ export default class Player extends SpriteExtended {
             rotation = ((2 * Math.PI) - rotation); // make rot out of 2 PI for full rotation
         var envelopePos = new me.Vector2d(this.pos.x + ((0.5 - this.anchorPoint.x) * this.width), this.pos.y + ((0.5 - this.anchorPoint.y) * this.height));
         var envelope = me.pool.pull("envelope", envelopePos.x, envelopePos.y, direction, rotation);
+
         // add it to the game world
         me.game.world.addChild(envelope);
 
+        // put shooting on cooldown
         this.startCooldown();
     }
 

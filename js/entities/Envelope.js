@@ -29,7 +29,8 @@ export default class Envelope extends SpriteExtended {
         var hitbox = new me.Rect(-(this.anchorPoint.x * width * scale), -(this.anchorPoint.y * height * scale), width * scale, height * scale);
         hitbox.rotate(rot);
         this.body = new me.Body(this, hitbox);
-        // walking & jumping speed
+
+        // speed
         this.body.setMaxVelocity(4, 4);
         this.body.setFriction(0,0);
     }
@@ -45,7 +46,6 @@ export default class Envelope extends SpriteExtended {
     }
 
     updateMovement(dt) {
-        var dtSec = dt/1000;
         this.body.vel.x = this.dir.x * this.body.maxVel.x;
         this.body.vel.y = this.dir.y * this.body.maxVel.y;
     }

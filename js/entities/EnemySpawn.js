@@ -1,0 +1,19 @@
+import * as me from 'https://esm.run/melonjs';
+
+export default class EnemySpawn extends me.Renderable {
+    constructor(x, y, settings) {
+        super(x, y, settings);
+        this.name = "enemySpawn";
+    }
+
+    spawnEnemy(enemyName) {
+        if (this.playerRef == null) {
+            console.error("Enemy Spawner has null player reference. It will not spawn enemies.");
+            return;
+        }
+
+        var newEnemy = me.pool.pull("enemy", this.pos.x, this.pos.y, this.playerRef);
+        newEnemy.nameTag = enemyName;
+        me.game.world.addChild(newEnemy);
+    }
+};
