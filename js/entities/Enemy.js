@@ -3,7 +3,7 @@ import SpriteExtended from './SpriteExtended.js';
 
 // an enemy entity
 export default class Enemy extends SpriteExtended {
-    constructor(x, y, playerRef) {
+    constructor(x, y, playerRef, onDieCallback) {
         // call the super constructor
         super(x, y, {
             image: "Enemy_Sprite",
@@ -14,7 +14,10 @@ export default class Enemy extends SpriteExtended {
         });
 
         this.playerRef = playerRef;
+        this.onDieCallback = onDieCallback;
+
         this.name = "enemy";
+        this.alwaysUpdate = true;
         this.framewidth = 32; // for later use
 
         // DEBUG variables
@@ -124,5 +127,11 @@ export default class Enemy extends SpriteExtended {
 
     die() {
         me.game.world.removeChild(this);
+    }
+
+    onDestroyEvent() {
+        if (this.onDieCallback !== null) {
+            this.onDieCallback();
+        }
     }
 };

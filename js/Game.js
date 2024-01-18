@@ -48,6 +48,9 @@ export default class Game extends me.Renderable {
             "ADAM",
         ];
 
+        this.totalEnemies = this.allEnemies.length;
+        this.enemiesKilled = 0;
+
         this.baseSpawnTimer = 1000;
         this.timeSinceLastSpawn = this.baseSpawnTimer;
     }
@@ -55,6 +58,13 @@ export default class Game extends me.Renderable {
     update(dt) {
         if (this.inactive)
             return;
+
+        if (this.allEnemies.length == 0) {
+            if (this.allEnemiesDead()) { // TODO: need to keep track of enemies alive and only trigger after all are dead
+                me.state.change(me.state.GAME_END);
+            }
+            return;
+        }
 
         this.timeSinceLastSpawn += dt;
         if (this.timeSinceLastSpawn >= this.baseSpawnTimer) {
@@ -64,13 +74,27 @@ export default class Game extends me.Renderable {
     }
 
     spawnEnemy() {
-        console.log("Spawning an enemy");
-        var randEnemy = this.allEnemies[Math.floor(Math.random() * this.allEnemies.length)];
+        var randEnemyIndex = Math.floor(Math.random() * this.allEnemies.length);
+        var randEnemy = this.allEnemies[randEnemyIndex];
+
+        // TODO be more selective (pick ones where player or other enemies are not close)
         var randSpawner = this.enemySpawners[Math.floor(Math.random() * this.enemySpawners.length)];
-        randSpawner.spawnEnemy(randEnemy);
+        randSpawner.spawnEnemy(randEnemy, this.enemyKilled.bind(this));
+
+        // remove the enemy from the list
+        this.allEnemies.splice(randEnemyIndex, 1);
     }
 
     resetTimer() {
         this.timeSinceLastSpawn = 0;
+    }
+
+    enemyKilled() {
+        this.enemiesKilled++;
+        console.log("Enemy killed! " + this.enemiesKilled + " / " + this.totalEnemies);
+    }
+
+    allEnemiesDead() {
+        return this.enemiesKilled === this.totalEnemies;
     }
 }

@@ -81,7 +81,6 @@ export default class Player extends SpriteExtended {
             this.setCurrentAnimation("walk_down");
             this.setAnimationFrame(0);
         }
-
     }
 
     /**

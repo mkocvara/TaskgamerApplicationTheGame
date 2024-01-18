@@ -6,13 +6,13 @@ export default class EnemySpawn extends me.Renderable {
         this.name = "enemySpawn";
     }
 
-    spawnEnemy(enemyName) {
+    spawnEnemy(enemyName, enemyOnDieCallback) {
         if (this.playerRef == null) {
             console.error("Enemy Spawner has null player reference. It will not spawn enemies.");
             return;
         }
 
-        var newEnemy = me.pool.pull("enemy", this.pos.x, this.pos.y, this.playerRef);
+        var newEnemy = me.pool.pull("enemy", this.pos.x, this.pos.y, this.playerRef, enemyOnDieCallback);
         newEnemy.nameTag = enemyName;
         me.game.world.addChild(newEnemy, this.playerRef.depth);
     }
