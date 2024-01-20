@@ -86,7 +86,7 @@ export default class PlayScreen extends me.Stage {
         me.audio.play(
             "intro",
             false,
-            () => me.audio.play("loop", true, null, 1),
+            () => me.audio.play("loop", true, null, 0.5),
             1
         );
     }

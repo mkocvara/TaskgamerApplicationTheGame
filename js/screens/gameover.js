@@ -11,7 +11,7 @@ export default class GameOverScreen extends me.Stage {
 
         // play death outro
         if (me.audio.outroPlaying !== true) {
-            me.audio.play("outro", false, () => me.audio.outroPlaying = false, 1); // TODO replace with death outro
+            me.audio.play("outro", false, () => me.audio.outroPlaying = false, 0.5); // TODO replace with death outro
             me.audio.outroPlaying = true;
         }
 

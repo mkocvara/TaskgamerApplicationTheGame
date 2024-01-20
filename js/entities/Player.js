@@ -5,7 +5,6 @@ import SpriteExtended from './SpriteExtended.js';
 export default class Player extends SpriteExtended {
     constructor(x, y, settings) {
         settings.anchorPoint = new me.Vector2d(0.5, 0.5);
-        settings.tint = new me.Color(0, 0, 0);
 
         var width = 32;
         var height = 64;

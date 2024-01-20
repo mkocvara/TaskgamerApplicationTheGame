@@ -11,7 +11,7 @@ export default class GameEndScreen extends me.Stage {
 
         // play outro
         if (me.audio.outroPlaying !== true) {
-            me.audio.play("outro", false, () => me.audio.outroPlaying = false, 1);
+            me.audio.play("outro", false, () => me.audio.outroPlaying = false, 0.5);
             me.audio.outroPlaying = true;
         }
 
