@@ -24,6 +24,7 @@ export default class PlayScreen extends me.Stage {
         }, false);
 
         this.setupUI();
+        this.playMusic();
     }
 
     /**
@@ -33,6 +34,7 @@ export default class PlayScreen extends me.Stage {
         // unsubscribe to all events
         me.input.releasePointerEvent("pointerup", me.game.viewport);
         me.input.releasePointerEvent("pointerdown", me.game.viewport);
+        this.stopMusic();
     }
 
     setupUI() {
@@ -77,5 +79,21 @@ export default class PlayScreen extends me.Stage {
             return true;
         }).bind(taskText);
         me.game.world.addChild(taskText);
+    }
+
+    playMusic() {
+        // play intro, then loop
+        me.audio.play(
+            "intro",
+            false,
+            () => me.audio.play("loop", true, null, 1),
+            1
+        );
+    }
+
+    stopMusic() {
+        me.audio.stop("intro");
+        me.audio.stop("loop");
+        me.audio.stop("outro");
     }
 };

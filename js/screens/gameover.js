@@ -9,6 +9,12 @@ export default class GameOverScreen extends me.Stage {
     onResetEvent() {
         me.game.world.backgroundColor.parseCSS("#202020");
 
+        // play death outro
+        if (me.audio.outroPlaying !== true) {
+            me.audio.play("outro", false, () => me.audio.outroPlaying = false, 1); // TODO replace with death outro
+            me.audio.outroPlaying = true;
+        }
+
         var youDied = new me.Sprite(me.game.viewport.width / 2, (me.game.viewport.height / 2 + 50), {
             image: "YouDied",
             anchorPoint: new me.Vector2d(0.5, 0.5)

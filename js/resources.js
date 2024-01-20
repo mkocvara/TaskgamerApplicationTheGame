@@ -29,6 +29,9 @@ var resources = [
      * @example
      * { name: "example_bgm", type: "audio", src: "data/bgm/" },
      */
+    { name: "intro", type: "audio", src: "data/bgm/" },
+    { name: "loop", type: "audio", src: "data/bgm/" },
+    { name: "outro", type: "audio", src: "data/bgm/" },
 
     /* Sound effects.
      * @example

@@ -12,9 +12,15 @@ import GameEndScreen from './screens/gameend.js';
  * Initialize the application
  */
 export default function onload () {
-    // init the video
+    // init video
     if (!me.video.init(800, 600, {parent : "screen", scale : "auto"})) {
         alert("Your browser does not support HTML5 canvas.");
+        return;
+    }
+
+    // init audio
+    if (!me.audio.init("wav,mp3")) {
+        alert("Sorry but your browser does not support html 5 audio !");
         return;
     }
 
@@ -45,5 +51,8 @@ export default function onload () {
             size: 11,
             textAlign: "center",
         }).bold();
+
+        // load audio
+
     });
 };
