@@ -50,6 +50,7 @@ export default class Game extends me.Renderable {
             "SIMON",
             "REECE",
             "SHALE",
+            "ANNA"
         ];
 
         this.totalEnemies = this.allEnemies.length;
