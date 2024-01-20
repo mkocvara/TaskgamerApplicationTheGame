@@ -40,6 +40,10 @@ export default class Enemy extends SpriteExtended {
         // set text name above head
         this.nameTag = "ENEMY";
         this.nameTagFont = me.game.fonts.enemyNameTag;
+
+        // colour blind mode
+        this.cachedColourBlindMode = me.game.colourBlindMode;
+        this.cachedTint = this.tint.clone();
     }
 
     /**
@@ -47,6 +51,21 @@ export default class Enemy extends SpriteExtended {
      */
     update(dt) {
         this.updateMovement(dt);
+
+        if (me.game.colourBlindMode) {
+            //var tintHex = this.tint.toHex();
+            //tintHex = tintHex.slice(1); // get rid of the # at the start
+            //var tintVal = parseInt(tintHex, 16);
+            //tintVal += 100;
+            //tintHex = Math.floor(tintVal).toString(16);
+            //this.tint.parseHex('#' + tintHex);
+            this.tint = new me.Color(Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256));
+            console.log(this.tint.toHex());
+        }
+        else if (this.cachedColourBlindMode !== me.game.colourBlindMode) {
+            this.tint = this.cachedTint.clone();
+        }
+        this.cachedColourBlindMode = me.game.colourBlindMode;
 
         if (this.body.vel.x !== 0 || this.body.vel.y !== 0) {
             super.update(dt);

@@ -60,11 +60,17 @@ export default class Game extends me.Renderable {
         this.baseSpawnTimer = 1000;
         this.timeSinceLastSpawn = this.baseSpawnTimer;
         me.game.gameTime = 0;
+
+        me.input.bindKey(me.input.KEY.C, "colourblindmode", true);
+        me.game.colourBlindMode = false;
     }
 
     update(dt) {
         if (this.inactive)
             return;
+
+        if (me.input.isKeyPressed("colourblindmode"))
+            me.game.colourBlindMode = !me.game.colourBlindMode;
 
         me.game.gameTime += dt;
 
