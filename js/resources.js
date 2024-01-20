@@ -32,6 +32,7 @@ var resources = [
     { name: "intro", type: "audio", src: "data/bgm/" },
     { name: "loop", type: "audio", src: "data/bgm/" },
     { name: "outro", type: "audio", src: "data/bgm/" },
+    { name: "fail", type: "audio", src: "data/bgm/" },
 
     /* Sound effects.
      * @example
