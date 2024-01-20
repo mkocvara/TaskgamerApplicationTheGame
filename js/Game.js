@@ -46,6 +46,9 @@ export default class Game extends me.Renderable {
             "SAM",
             "JAKE",
             "ADAM",
+            "JOE",
+            "SIMON",
+            "REECE",
         ];
 
         this.totalEnemies = this.allEnemies.length;
